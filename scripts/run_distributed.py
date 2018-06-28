@@ -11,7 +11,7 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("--hostfile", default="./configuration/whole_cluster.hostfile",help="Hostfile to run with (default is whole_cluster.hostfile)", type=str)
 
-parser.add_argument("-n", default=None, help="How many processes to run per node", type=int)
+parser.add_argument("-n", default=None, help="How many processes to run", type=int)
 
 parser.add_argument("command", help="the command to execute", type=str)
 

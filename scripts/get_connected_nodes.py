@@ -14,10 +14,10 @@ parser.add_argument("--output-hostfile", default="/tmp/connected.hostfile",help=
 args = parser.parse_args()
 
 
-
 def is_connected(node):
     # 2 second timeout
     return os.system("ping -c 1 -w1 " + node + " > /dev/null 2>&1") == 0
+
 
 hostfile_path = "./configuration/whole_cluster.hostfile"
 
