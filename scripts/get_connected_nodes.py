@@ -17,7 +17,7 @@ args = parser.parse_args()
 
 def is_connected(node):
     # 2 second timeout
-    return os.system("ping -c 1 -w2 " + node + " > /dev/null 2>&1") == 0
+    return os.system("ping -c 1 -w1 " + node + " > /dev/null 2>&1") == 0
 
 hostfile_path = "./configuration/whole_cluster.hostfile"
 
@@ -36,7 +36,7 @@ output_file = open(args.output_hostfile, "w")
 
 for host in hosts:
     if is_connected(host):
-        output_file.write("%s" % (host))
+        output_file.write("%s slots=6\n" % (host))
 
 output_file.close()
 

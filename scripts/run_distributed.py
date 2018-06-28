@@ -26,7 +26,7 @@ mpi_command = "mpirun -mca plm_rsh_no_tree_spawn 1 --hostfile %s" % (args.hostfi
 if args.n is not None:
     mpi_command = "%s -n %s" % (mpi_command, args.n)
 
-mpi_command = "%s \"%s\"" % (mpi_command, args.command)
+mpi_command = "%s %s" % (mpi_command, args.command)
 
 
 print (mpi_command)
