@@ -19,7 +19,7 @@ def is_connected(node):
     return os.system("ping -c 1 -w1 " + node + " > /dev/null 2>&1") == 0
 
 
-hostfile_path = "./configuration/whole_cluster.hostfile"
+hostfile_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__))) + "/configuration/whole_cluster.hostfile"
 
 fp = open(hostfile_path)
 

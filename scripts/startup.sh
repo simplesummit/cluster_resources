@@ -7,6 +7,9 @@
 RESOURCES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 RESOURCES="$( dirname "$RESOURCES" )"
 
+BIN_PYTHON="$(which python3)"
+
+
 # default is 30 seconds
 SLEEP_TIME="30"
 
@@ -18,7 +21,10 @@ fi
 # sleep $SLEEP_TIME
 
 # this will write to the file `/tmp/connected.hostfile`
-/usr/local/bin/python3 $RESOURCES/scripts/get_connected_nodes.py
+
+if [ -z "$2" ]; then
+    $BIN_PYTHON $RESOURCES/scripts/get_connected_nodes.py
+fi
 
 # the currently working host files, of online nodes
 WORKING_HOSTFILE="/tmp/connected.hostfile"
@@ -28,7 +34,11 @@ NUM_HOSTS="$(wc -l < $WORKING_HOSTFILE)"
 echo connected hosts: $NUM_HOSTS
 
 
-/usr/local/bin/python3 $RESOURCES/scripts/run_distributed.py --hostfile $WORKING_HOSTFILE -n $((6 * $NUM_HOSTS)) "/leconte/shared/bin/fractalexplorer -F -i 100 -T $RESOURCES/fonts/UbuntuMono.ttf -A RAIO_1GPU_1CPU"
+$BIN_PYTHON $RESOURCES/scripts/run_distributed.py --hostfile $WORKING_HOSTFILE "sudo $RESOURCES/scripts/jetson_clocks.sh --restore $RESOURCES/configuration/gpu_max.clocksettings"
+
+
+
+$BIN_PYTHON $RESOURCES/scripts/run_distributed.py --hostfile $WORKING_HOSTFILE  "/leconte/shared/bin/fractalexplorer -s 0x0 -i 100 -v 4 -T $RESOURCES/fonts/UbuntuMono.ttf -A ALLGPU"
 
 
 
