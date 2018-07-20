@@ -38,7 +38,7 @@ $BIN_PYTHON $RESOURCES/scripts/run_distributed.py --hostfile $WORKING_HOSTFILE "
 
 
 
-$BIN_PYTHON $RESOURCES/scripts/run_distributed.py --hostfile $WORKING_HOSTFILE  "/leconte/shared/bin/fractalexplorer -s 0x0 -i 100 -v 4 -T $RESOURCES/fonts/UbuntuMono.ttf -A ALLGPU"
+$BIN_PYTHON $RESOURCES/scripts/run_distributed.py --hostfile $WORKING_HOSTFILE  "/leconte/shared/bin/fractalexplorer -F -i 100 -v 4 "
 
 
 
