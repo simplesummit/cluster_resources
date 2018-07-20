@@ -13,7 +13,7 @@ driver_command = "sudo xboxdrv > /tmp/controller.log"
 def runcmd(cmd):
     return subprocess.run(['/bin/bash', '-c', cmd]).returncode
 
-time_wait = 0.25
+time_wait = 1.0
 
 while True:
     print("Running another driver...")
