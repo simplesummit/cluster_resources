@@ -5,6 +5,7 @@ outputs the connected nodes
 
 """
 
+
 import os
 import argparse
 parser = argparse.ArgumentParser()
@@ -31,12 +32,16 @@ hosts = [line.split() for line in hostfile_data]
 hosts = filter(lambda h: len(h) > 0, hosts)
 hosts = [h[0] for h in hosts]
 
+print ("checking %d hosts" % len(hosts))
 
 output_file = open(args.output_hostfile, "w")
 
 for host in hosts:
     if is_connected(host):
+        print ("'%s' is connected" % host)
         output_file.write("%s slots=6\n" % (host))
+    else:
+        print ("'%s' is not connected" % host)
 
 output_file.close()
 
